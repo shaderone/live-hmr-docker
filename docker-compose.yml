@@ -1,0 +1,27 @@
+# docker-compose.yml
+version: "3.8" # Specify the Docker Compose version
+
+services:
+  frontend:
+    build:
+      context: ./frontend # The directory containing the frontend Dockerfile
+      dockerfile: Dockerfile # The name of the frontend Dockerfile
+    ports:
+      - "5173:5173" # Map host port 5173 to container port 5173
+    volumes:
+      - ./frontend:/app # Mount the host frontend directory for development
+      - /app/node_modules # Exclude the container's node_modules from the volume mount
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+    # Add any other necessary environment variables for the frontend here
+
+  backend:
+    build:
+      context: ./server # The directory containing the backend Dockerfile
+      dockerfile: Dockerfile # The name of the backend Dockerfile
+    ports:
+      - "3100:3100" # Map host port 3100 to container port 3100
+    volumes:
+      - ./server:/app # Mount the host server directory for development
+      - /app/node_modules # Exclude the container's node_modules from the volume mount
