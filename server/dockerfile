@@ -1,0 +1,22 @@
+#get an official image for node
+FROM node:18
+
+#set the working directory
+WORKDIR /app
+
+#copy files
+#package.json at first to take advantage of layer caching
+COPY package*.json ./
+
+#install dependencies
+RUN npm install
+
+#copy the reset of the server code(all files)
+COPY . .
+
+#expose the port used to listen to the server
+EXPOSE 3100
+
+#start the server. This is given as a list of Strings.
+CMD ["npm","run", "dev"]
+

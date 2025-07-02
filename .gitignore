@@ -1,0 +1,23 @@
+# Ignore Node.js module directory in the server folder
+server/node_modules/
+
+# Ignore frontend build output directories (adjust as needed)
+frontend/build/
+frontend/dist/
+
+# Ignore backend/server build output directories (adjust as needed)
+server/build/
+server/dist/
+
+# Ignore environment variables and secrets (important for security)
+.env
+
+# Ignore log files
+*.log
+
+# Ignore system-specific files
+.DS_Store
+
+# Ignore any other temporary or generated files
+tmp/
+*.tmp
